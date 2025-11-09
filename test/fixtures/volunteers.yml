@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  nickname: MyString
+  email: MyString
+  phone: MyString
+  city: MyString
+  date: 2025-11-09
+  shifts: MyText
+  training: MyString
+  waiver: false
+
+two:
+  name: MyString
+  nickname: MyString
+  email: MyString
+  phone: MyString
+  city: MyString
+  date: 2025-11-09
+  shifts: MyText
+  training: MyString
+  waiver: false

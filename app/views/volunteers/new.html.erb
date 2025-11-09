@@ -1,0 +1,106 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Volunteer Liability Waiver and Registration Form</h1>
+  <p class="text-left text-muted">
+    Thank you for volunteering to support this rally/protest. Your involvement is vital to ensuring that our
+    collective voice is heard. This is a grassroots, volunteer-led initiative, and as such, organizers and
+    volunteers cannot assume liability for any incidents, injuries, or damages that may occur during
+    participation.
+  </p>
+
+  <%= form_with model: @volunteer, local: true do |f| %>
+    <% if @volunteer.errors.any? %>
+      <div class="alert alert-danger">
+        <h5>Errors:</h5>
+        <ul>
+          <% @volunteer.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Personal Info -->
+    <div class="mb-3">
+      <%= f.label :name, "Full Name", class: "form-label" %>
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :nickname, "Public Name", class: "form-label" %>
+      <%= f.text_field :nickname, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :email, "Email Address", class: "form-label" %>
+      <%= f.email_field :email, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :phone, "Phone Number", class: "form-label" %>
+      <%= f.telephone_field :phone, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :city, "City", class: "form-label" %>
+      <%= f.text_field :city, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :date, "Date", class: "form-label" %>
+      <%= f.date_field :date, class: "form-control", required: true %>
+    </div>
+
+    <!-- Volunteer Shifts -->
+    <h4 class="mt-5 mb-3">Select Your Volunteer Shifts</h4>
+    <p class="text-muted">Choose 2–3 total shifts. You must choose at least one on Saturday. You cannot take more than one per day.</p>
+
+    <% shifts = {
+      "Friday" => ["5PM–9PM (Setup & Event Support)", "Float 5PM–9PM"],
+      "Saturday" => ["7AM–12PM", "11:30AM–4:30PM", "4PM–9PM", "Float 9AM–2PM", "Float 2PM–7PM"],
+      "Sunday" => ["8AM–12PM", "11AM–3PM", "Float 9AM–2PM"]
+    } %>
+
+    <% shifts.each do |day, times| %>
+      <div class="mb-4">
+        <h5><%= day %></h5>
+        <% times.each do |time| %>
+          <% shift_name = "#{day} #{time}" %>
+          <% spots_left = Volunteer.spots_left(shift_name) %>
+          <div class="form-check">
+            <%= f.check_box :shifts, { multiple: true, class: "form-check-input shift", disabled: spots_left == 0 }, shift_name, nil %>
+            <%= f.label shift_name, "#{time} (#{spots_left} spots left)", class: "form-check-label" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- Mandatory Training -->
+    <h4 class="mt-5 mb-3">Mandatory Training Session</h4>
+    <div class="form-check">
+      <%= f.radio_button :training, "Sunday, Nov 23 – 9am–12pm", class: "form-check-input", required: true %>
+      <%= f.label :training, "Sunday, November 23 – 9:00 AM–12:00 PM", class: "form-check-label" %>
+    </div>
+    <div class="form-check mb-4">
+      <%= f.radio_button :training, "Wednesday, Nov 26 – 5:30pm–8:30pm", class: "form-check-input", required: true %>
+      <%= f.label :training, "Wednesday, November 26 – 5:30 PM–8:30 PM", class: "form-check-label" %>
+    </div>
+
+    <!-- Liability Waiver -->
+    <div class="alert alert-warning">
+      <p>I acknowledge that my participation in this event may involve certain inherent risks, including but not limited to exposure to vehicles, counter-protesters, weather, uneven terrain, or other unforeseen circumstances. I understand that I am participating voluntarily and assume full responsibility for my actions and personal safety. I hereby release, waive, and hold harmless the event organizers, volunteers, affiliates, and any associated individuals from any and all liability, claims, or demands of any kind arising from or related to participation in this event, whether caused by negligence or otherwise. I agree to comply with all local laws and any safety guidance provided by event coordinators. If under 18 years of age, I affirm that I have the consent of a parent or legal guardian to participate.</p>
+    </div>
+
+    <div class="form-check mb-3">
+      <%= f.check_box :waiver, class: "form-check-input", required: true %>
+      <%= f.label :waiver, "I have read and agree to the Liability Waiver and Acknowledgement of Risk.", class: "form-check-label" %>
+    </div>
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>
