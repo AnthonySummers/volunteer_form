@@ -1,0 +1,149 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <%= link_to "Rally of Resistance for Alberta", root_path, class: "navbar-brand fw-bold" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Volunteer Sign-Up", new_volunteer_path, class: "nav-link #{'active' if current_page?(new_volunteer_path)}" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="container mt-5">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-uppercase">Rally of Resistance</h1>
+    <p class="lead text-muted">
+      Join us at <strong>Borden Park in Edmonton</strong> — outside the UCP AGM — to stand up for our province,
+      our public services, and our future. Together, we rise in solidarity against privatization, austerity, and injustice.
+    </p>
+  </div>
+
+  <!-- About Section -->
+  <!-- About Section -->
+  <div class="row mt-4 align-items-start">
+    <!-- Left Column: Rally Summary -->
+    <div class="col-md-6">
+      <h3 class="fw-bold mb-3">About the Rally</h3>
+      <p>
+        The <strong>Rally of Resistance</strong> is a grassroots gathering of Albertans who have had enough of cuts to
+        healthcare, education, and workers’ rights. This movement is powered by volunteers — everyday people
+        who believe in a fair, just, and sustainable Alberta for all.
+      </p>
+      <p>
+        Over three days, we will gather, march, and speak out — sending a clear message to the UCP:
+        <strong>Albertans will not be silent.</strong>
+      </p>
+  
+      <img src="/imageforresistance.png"
+           alt="Rally of Resistance Sign"
+           class="img-fluid rounded shadow-sm mt-3 mb-3"
+           style="max-width: 90%; border: 1px solid #ccc;">
+    </div>
+  
+    <!-- Right Column: UCP Issues Summary -->
+    <div class="col-md-6">
+      <h3 class="fw-bold mb-4 text-dark border-bottom pb-2">What We’re Fighting Back Against</h3>
+  
+      <div class="card shadow-sm mb-3 border-0">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">💊 Healthcare Privatization</h5>
+          <p class="card-text text-muted mb-0">
+            The UCP continues to outsource healthcare services, eroding our public system and threatening
+            accessibility for working families and rural Albertans.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card shadow-sm mb-3 border-0">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">📚 Cuts to Education</h5>
+          <p class="card-text text-muted mb-0">
+            Schools are underfunded, class sizes are ballooning, and teachers are stretched to the limit while
+            private schools receive more government support.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card shadow-sm mb-3 border-0">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">🌍 Attacks on Workers & the Environment</h5>
+          <p class="card-text text-muted mb-0">
+            The government’s policies undermine organized labour, weaken environmental protections, and
+            prioritize corporate profit over people.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card shadow-sm mb-3 border-0">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">⚖️ Democratic Erosion</h5>
+          <p class="card-text text-muted mb-0">
+            From gag laws to attacks on the media and civil society, this administration is attempting to silence dissent
+            and concentrate power.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Schedule Overview -->
+  <div class="mt-5">
+    <h2 class="text-center mb-4">📅 Rally Schedule – Borden Park, Edmonton</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <h4 class="card-title text-primary">Friday, November 29</h4>
+            <p class="card-text mb-2"><strong>Time:</strong> 6:30 PM – 8:00 PM</p>
+            <p class="card-text mb-2"><strong>March:</strong> 7:00 PM – 8:00 PM</p>
+            <p class="text-muted">Kickoff evening — gathering and march to launch the weekend of resistance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <h4 class="card-title text-danger">Saturday, November 30</h4>
+            <p class="card-text mb-2"><strong>Time:</strong> 10:00 AM – 4:00 PM</p>
+            <p class="card-text mb-2"><strong>Speeches:</strong> 10:30 AM – 12:00 PM</p>
+            <p class="text-muted">Main rally day — speeches, music, solidarity, and community action.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <h4 class="card-title text-success">Sunday, December 1</h4>
+            <p class="card-text mb-2"><strong>Time:</strong> 9:30 AM – 1:00 PM</p>
+            <p class="card-text mb-2"><strong>Main Gathering:</strong> 10:00 AM – 11:00 AM</p>
+            <p class="text-muted">Closing gathering — cleanup, reflection, and future planning.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 text-center text-muted">
+    <hr>
+    <p>&copy; 2025 Rally of Resistance | Grassroots Volunteer Network</p>
+  </footer>
+</div>

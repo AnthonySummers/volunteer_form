@@ -13,7 +13,7 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.new(volunteer_params)
     if @volunteer.save
-      redirect_to root_path, notice: "Thank you for registering!"
+      redirect_to new_volunteer_path, notice: "Thank you for registering!"
     else
       flash.now[:alert] = "There were errors with your submission."
       render "volunteers/new"

@@ -1,6 +1,6 @@
 class Volunteer < ApplicationRecord
   # Shifts stored as JSONB array
-  validates :name, :email, :phone, :city, :date, :training, presence: true
+  validates :name, :email, :phone, :city, :date, presence: true
   validates :waiver, acceptance: true
   validate :shift_selection_rules
 
