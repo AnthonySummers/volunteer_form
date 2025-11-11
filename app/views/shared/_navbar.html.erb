@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <%= link_to "Rally of Resistance for Alberta", root_path, class: "navbar-brand fw-bold" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Volunteer Sign-Up", new_volunteer_path, class: "nav-link #{'active' if current_page?(new_volunteer_path)}" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
