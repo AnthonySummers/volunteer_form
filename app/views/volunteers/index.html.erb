@@ -1,49 +1,52 @@
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Volunteer Shifts</h1>
+<div class="bg-dark text-light min-vh-100 py-5">
 
-  <% if @volunteers.empty? %>
-    <div class="alert alert-info text-center">
-      No volunteers have registered yet.
-    </div>
-  <% else %>
-    <%# Helper to sort shifts by day and start time safely %>
-    <% day_order = ["Friday", "Saturday", "Sunday"] %>
-    <% shifts_sorted = Volunteer::SHIFT_SLOTS.keys.sort_by do |shift| 
-         day, time_str = shift.split(" ", 2)
-         start_time = begin
-                        Time.parse(time_str.split("–").first)
-                      rescue
-                        Time.parse("00:00")
-                      end
-         [day_order.index(day), start_time]
-       end %>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4 text-light">Volunteer Shifts</h1>
 
-    <% shifts_sorted.each do |shift| %>
-      <% vols = @volunteers.select { |v| v.shifts.include?(shift) } %>
-      <% next if vols.empty? %>
-      <div class="mb-4">
-        <h4 class="mb-3 border-bottom pb-2">
-          <%= shift %> (<%= vols.size %> / <%= Volunteer::SHIFT_SLOTS[shift] %> spots taken)
-        </h4>
-        <div class="row">
-          <% vols.each do |volunteer| %>
-            <div class="col-md-6 mb-3">
-              <div class="card shadow-sm">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <%= volunteer.nickname.present? ? volunteer.nickname : volunteer.name %>
-                  </h5>
-                  <p class="card-text mb-1"><strong>Email:</strong> <%= volunteer.email %></p>
-                  <p class="card-text mb-1"><strong>Phone:</strong> <%= volunteer.phone %></p>
-                  <p class="card-text mb-1"><strong>City:</strong> <%= volunteer.city %></p>
-                  <p class="card-text mb-1"><strong>Registered on:</strong> <%= volunteer.created_at.strftime("%B %d, %Y") %></p>
-                  <p class="card-text mb-1"><strong>Training Session:</strong> <%= volunteer.training %></p>
+    <% if @volunteers.empty? %>
+      <div class="alert alert-info text-center">
+        No volunteers have registered yet.
+      </div>
+    <% else %>
+      <%# Helper to sort shifts by day and start time safely %>
+      <% day_order = ["Friday", "Saturday", "Sunday"] %>
+      <% shifts_sorted = Volunteer::SHIFT_SLOTS.keys.sort_by do |shift| 
+          day, time_str = shift.split(" ", 2)
+          start_time = begin
+                          Time.parse(time_str.split("–").first)
+                        rescue
+                          Time.parse("00:00")
+                        end
+          [day_order.index(day), start_time]
+        end %>
+
+      <% shifts_sorted.each do |shift| %>
+        <% vols = @volunteers.select { |v| v.shifts.include?(shift) } %>
+        <% next if vols.empty? %>
+        <div class="mb-4">
+          <h4 class="mb-3 border-bottom pb-2 text-light">
+            <%= shift %> (<%= vols.size %> / <%= Volunteer::SHIFT_SLOTS[shift] %> spots taken)
+          </h4>
+          <div class="row">
+            <% vols.each do |volunteer| %>
+              <div class="col-md-6 mb-3">
+                <div class="card shadow-sm bg-secondary text-light">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= volunteer.nickname.present? ? volunteer.nickname : volunteer.name %>
+                    </h5>
+                    <p class="card-text mb-1"><strong>Email:</strong> <%= volunteer.email %></p>
+                    <p class="card-text mb-1"><strong>Phone:</strong> <%= volunteer.phone %></p>
+                    <p class="card-text mb-1"><strong>City:</strong> <%= volunteer.city %></p>
+                    <p class="card-text mb-1"><strong>Registered on:</strong> <%= volunteer.created_at.strftime("%B %d, %Y") %></p>
+                    <p class="card-text mb-1"><strong>Training Session:</strong> <%= volunteer.training %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

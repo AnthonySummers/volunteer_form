@@ -1,2 +1,47 @@
-
 @import "bootstrap";
+
+.custom-dark-header {
+  background-color: #343a40; /* Slightly lighter or darker shade of dark */
+}
+
+.card.bg-dark {
+  background-color: #343a40; /* Slightly lighter or darker shade of dark */
+  color: #f8f9fa; /* Light text color */
+}
+
+.text-light {
+  color: #f8f9fa !important;
+}
+
+// Dark theme for forms and tables
+.bg-dark, .bg-secondary {
+  background-color: #181a1b !important;
+}
+
+.text-light, .text-white {
+  color: #f8f9fa !important;
+}
+
+.card.bg-secondary {
+  background-color: #23272b !important;
+  color: #f8f9fa !important;
+}
+
+input, textarea, select {
+  background-color: #23272b !important;
+  color: #f8f9fa !important;
+  border: 1px solid #444 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #b0b3b8 !important;
+}
+
+.table {
+  background-color: #23272b !important;
+  color: #f8f9fa !important;
+}
+
+.table th, .table td {
+  border-color: #444 !important;
+}
