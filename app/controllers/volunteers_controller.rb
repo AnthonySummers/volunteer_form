@@ -1,6 +1,5 @@
-
 class VolunteersController < ApplicationController
-  before_action :authenticate, only: [:index]
+  before_action :authenticate_user!, only: [:index]
 
   def index
     @volunteers = Volunteer.all
@@ -24,13 +23,5 @@ class VolunteersController < ApplicationController
 
   def volunteer_params
     params.require(:volunteer).permit(:name, :nickname, :email, :phone, :city, :date, :training, :waiver, shifts: [])
-  end
-
-
-  def authenticate
-    authenticate_or_request_with_http_basic("Restricted Area") do |username, password|
-      # Replace "mysecretpass" with your desired passphrase
-      password == "edmontonvolunteers"
-    end
   end
 end
